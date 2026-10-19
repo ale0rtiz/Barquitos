@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int SIZE = 5;   //
+int TOTAL_BARCOS =4;    //
+
+//  FUNCION PARA INICIALIZAR EL TABLERO
+
+void inicializarTablero(char tablero[SIZE][SIZE]){
+    for(int i=0; i<SIZE; i++){
+        for(int j=0; j<SIZE; j++){
+            tablero[i][j]= '~';
+        }
+    }
+}
+
+void mostrarTablero(char tablero[SIZE][SIZE]){
+    printf(" ");
+    for(int j=0; j<SIZE; j++){
+        printf("%d ", j);
+    }
+    printf("\n");
+    for(int i=0; i<SIZE; i++){
+        printf("%d", i);
+        for(int j=0; j<SIZE; j++){
+            printf("%c ", tablero[i][j]);
+        }
+        printf("\n");
+    }
+    }
+    
+    
+    
+int main()
+{
+    char tableroP1 [SIZE][SIZE];
+    char tableroP2 [SIZE][SIZE];
+    char tirosP1 [SIZE][SIZE];
+    char tirosP2 [SIZE][SIZE];
+    
+    inicializarTablero(tableroP1);
+    inicializarTablero(tableroP2);
+    inicializarTablero(tirosP1);
+    inicializarTablero(tirosP2);
+    
+    /*mostrarTablero(tableroP1);
+    mostrarTablero(tableroP2);*/
+    
+    int barcosRestantes1 = TOTAL_BARCOS;
+    int barcosRestantes2 = TOTAL_BARCOS;
+    
+    // ==========================
+    //  FASE 1
+    //===========================
+    
+    printf("=== JUGADOR 1: Colocar tus %d barcos ===\n", TOTAL_BARCOS);
+    for(int i=0; i<TOTAL_BARCOS; i++){
+        int r, c;
+        printf("Posicion del barco %d (fila columna): ", i + 1);
+        scanf("%d %d", &r, &c);
+        if(r>=0 && r<SIZE && c>=0 && c<SIZE && tableroP1[r][c] == '~'){
+            tableroP1[r][c] = 'B';
+        } else {
+            printf("Coordenada invalida o ya ocupada. Intenta de nuevo... \n");
+            i--;
+        }
+    }
+    
+    printf("=== JUGADOR 2: Colocar tus %d barcos ===\n", TOTAL_BARCOS);
+    for(int i=0; i<TOTAL_BARCOS; i++){
+        int r, c;
+        printf("Posicion del barco %d (fila columna): ", i + 1);
+        scanf("%d %d", &r, &c);
+        if(r>=0 && r<SIZE && c>=0 && c<SIZE && tableroP2[r][c] == '~'){
+            tableroP2[r][c] = 'B';
+        } else {
+            printf("Coordenada invalida o ya ocupada. Intenta de nuevo... \n");
+            i--;
+        }
+    }
+    while(barcosRestantes1 > 0 && barcosRestantes2 > 0){
+        int r, c;
+        //  Turno del Jugador 1
+        printf("=== Turno jugador 1 === \n ");
+        mostrarTablero(tirosP1);
+    }
+    
+    /*mostrarTablero(tableroP1);
+    mostrarTablero(tableroP2);*/
+    return 0;
+}
